@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WebDesignerPro — Custom Websites That Look Modern and Convert</title>
+  <meta name="description" content="WebDesignerPro creates modern, mobile-friendly websites for businesses that want a stronger online presence, cleaner design, better call-to-action placement, and a polished custom vibe that helps turn visitors into real customers." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0e1014;
+      --bg-soft:#151922;
+      --panel:rgba(255,255,255,.05);
+      --panel-2:rgba(255,255,255,.08);
+      --text:#f5f7fb;
+      --muted:#b8c0d0;
+      --line:rgba(255,255,255,.12);
+      --accent:#74f0c2;
+      --accent-2:#7aa8ff;
+      --accent-3:#ffd36e;
+      --shadow:0 20px 60px rgba(0,0,0,.35);
+      --radius:22px;
+      --max:1200px;
+      --nav-h:74px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:'Outfit', sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(116,240,194,.14), transparent 26%),
+        radial-gradient(circle at 90% 20%, rgba(122,168,255,.12), transparent 24%),
+        radial-gradient(circle at 50% 100%, rgba(255,211,110,.08), transparent 32%),
+        linear-gradient(180deg, #0e1014 0%, #111520 100%);
+      color:var(--text);
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size:40px 40px;
+      mask-image:linear-gradient(to bottom, rgba(0,0,0,.35), transparent 85%);
+      opacity:.28;
+      z-index:-1;
+    }
+
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .container{width:min(calc(100% - 2rem), var(--max)); margin-inline:auto}
+    .section{padding:clamp(4.5rem, 7vw, 7rem) 0}
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:.55rem;
+      padding:.5rem .8rem;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:.84rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      backdrop-filter:blur(14px);
+    }
+    .eyebrow::before{
+      content:"";
+      width:.55rem;height:.55rem;border-radius:50%;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      box-shadow:0 0 12px rgba(116,240,194,.45);
+    }
+
+    h1,h2,h3{
+      font-family:'Syne', sans-serif;
+      line-height:.95;
+      margin:0 0 1rem;
+      letter-spacing:-.04em;
+    }
+    h1{font-size:clamp(3.2rem, 9vw, 7rem)}
+    h2{font-size:clamp(2.1rem, 5vw, 4.4rem)}
+    h3{font-size:clamp(1.25rem, 2vw, 1.8rem)}
+    p{
+      margin:0;
+      color:var(--muted);
+      font-size:clamp(1rem, 1.35vw, 1.1rem);
+      line-height:1.7;
+    }
+
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      backdrop-filter:blur(16px);
+      background:rgba(14,16,20,.62);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .nav{
+      min-height:var(--nav-h);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
+      position:relative;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:.8rem;
+      font-weight:700;
+      letter-spacing:.02em;
+    }
+    .brand-mark{
+      width:42px;height:42px;border-radius:13px;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.14), rgba(255,255,255,.05)),
+        linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.2), 0 12px 30px rgba(0,0,0,.25);
+      position:relative;
+      overflow:hidden;
+    }
+    .brand-mark::before,
+    .brand-mark::after{
+      content:"";
+      position:absolute;
+      border-radius:999px;
+      background:rgba(255,255,255,.78);
+    }
+    .brand-mark::before{width:18px;height:3px;left:11px;top:13px;transform:rotate(45deg)}
+    .brand-mark::after{width:18px;height:3px;left:11px;top:24px;transform:rotate(-45deg)}
+    .brand span:last-child{
+      font-family:'Syne', sans-serif;
+      font-size:1.05rem;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:1.2rem;
+    }
+    .nav-links a{
+      color:var(--muted);
+      font-size:.98rem;
+      transition:.25s ease;
+    }
+    .nav-links a:hover{color:var(--text)}
+    .nav-cta{
+      display:flex;
+      align-items:center;
+      gap:.75rem;
+    }
+
+    .menu-btn{
+      display:none;
+      width:48px;height:48px;border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      align-items:center;justify-content:center;
+      cursor:pointer;
+    }
+    .menu-btn span,
+    .menu-btn span::before,
+    .menu-btn span::after{
+      display:block;
+      width:18px;height:2px;border-radius:2px;background:currentColor;position:relative;
+      transition:.25s ease;
+    }
+    .menu-btn span::before,.menu-btn span::after{content:"";position:absolute;left:0}
+    .menu-btn span::before{top:-6px}
+    .menu-btn span::after{top:6px}
+    .menu-btn.active span{background:transparent}
+    .menu-btn.active span::before{top:0;transform:rotate(45deg)}
+    .menu-btn.active span::after{top:0;transform:rotate(-45deg)}
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.65rem;
+      min-height:52px;
+      padding:0 1.15rem;
+      border-radius:999px;
+      border:1px solid transparent;
+      font-weight:600;
+      transition:transform .2s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
+      will-change:transform;
+      cursor:pointer;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn:active{transform:translateY(0) scale(.985)}
+    .btn-primary{
+      color:#06110d;
+      background:linear-gradient(135deg,var(--accent),#9cf3d6);
+      box-shadow:0 14px 30px rgba(116,240,194,.2);
+    }
+    .btn-secondary{
+      color:var(--text);
+      border-color:var(--line);
+      background:rgba(255,255,255,.05);
+      backdrop-filter:blur(14px);
+    }
+
+    .hero{
+      padding:clamp(3rem, 6vw, 5rem) 0 2.5rem;
+      min-height:calc(100vh - var(--nav-h));
+      display:grid;
+      align-items:center;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:2rem;
+      align-items:center;
+    }
+    .hero-copy p{
+      max-width:62ch;
+      margin-top:1.2rem;
+    }
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.9rem;
+      margin-top:1.6rem;
+    }
+    .hero-meta{
+      margin-top:1.6rem;
+      display:flex;
+      flex-wrap:wrap;
+      gap:1rem 1.4rem;
+      color:var(--muted);
+      font-size:.96rem;
+    }
+    .hero-meta strong{color:var(--text);font-weight:600}
+    .hero-visual{
+      position:relative;
+      min-height:560px;
+      display:grid;
+      place-items:center;
+    }
+
+    .device{
+      width:min(100%, 450px);
+      aspect-ratio:4/5;
+      border-radius:34px;
+      position:relative;
+      background:
+        linear-gradient(160deg, rgba(255,255,255,.1), rgba(255,255,255,.02)),
+        linear-gradient(180deg, #141925, #0e1119);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      backdrop-filter:blur(12px);
+    }
+    .device::before{
+      content:"";
+      position:absolute;
+      inset:16px;
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,.08);
+      pointer-events:none;
+    }
+    .device-notch{
+      position:absolute;
+      top:14px;left:50%;
+      transform:translateX(-50%);
+      width:34%;height:26px;
+      border-radius:999px;
+      background:#0a0d13;
+      border:1px solid rgba(255,255,255,.06);
+      z-index:2;
+    }
+    .ui{
+      padding:4.2rem 1.2rem 1.2rem;
+      height:100%;
+      display:grid;
+      grid-template-rows:auto auto 1fr auto;
+      gap:1rem;
+    }
+    .ui-bar,.ui-row,.ui-block{
+      border-radius:20px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      backdrop-filter:blur(10px);
+    }
+    .ui-bar{height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 .95rem}
+    .ui-dot{width:10px;height:10px;border-radius:50%;background:var(--accent)}
+    .ui-lines{display:grid;gap:.45rem}
+    .ui-lines span{
+      display:block;height:8px;border-radius:999px;background:linear-gradient(90deg, rgba(255,255,255,.24), rgba(255,255,255,.08));
+    }
+    .ui-lines span:nth-child(1){width:120px}
+    .ui-lines span:nth-child(2){width:86px}
+    .ui-row{padding:1rem;display:grid;grid-template-columns:1.1fr .9fr;gap:.8rem;min-height:110px}
+    .ui-pill{
+      height:38px;border-radius:999px;background:linear-gradient(135deg, rgba(116,240,194,.18), rgba(122,168,255,.18));
+      border:1px solid rgba(255,255,255,.1);
+    }
+    .ui-block{padding:1rem;display:grid;gap:.75rem}
+    .ui-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:.8rem;
+    }
+    .ui-box{
+      min-height:120px;border-radius:18px;
+      background:linear-gradient(160deg, rgba(255,255,255,.09), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .ui-footer{
+      min-height:70px;
+      border-radius:18px;
+      display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(135deg, rgba(116,240,194,.15), rgba(255,211,110,.12));
+      border:1px solid rgba(255,255,255,.1);
+      color:var(--text);
+      font-weight:600;
+    }
+
+    .float-tag{
+      position:absolute;
+      padding:.8rem 1rem;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(17,21,32,.7);
+      backdrop-filter:blur(16px);
+      box-shadow:var(--shadow);
+      font-size:.92rem;
+      color:var(--text);
+      max-width:220px;
+    }
+    .float-tag small{display:block;color:var(--muted);margin-top:.25rem}
+    .tag-a{left:-12px;top:70px}
+    .tag-b{right:-10px;top:160px}
+    .tag-c{left:18px;bottom:36px}
+
+    .content-grid{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:2rem;
+      align-items:start;
+    }
+    .panel{
+      padding:1.4rem;
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      border-radius:22px;
+      backdrop-filter:blur(16px);
+      box-shadow:var(--shadow);
+    }
+    .about-list{
+      display:grid;
+      gap:.95rem;
+      margin-top:1.1rem;
+    }
+    .about-item{
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:.9rem;
+      align-items:start;
+      padding:.95rem 0;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .about-item:last-child{border-bottom:0;padding-bottom:0}
+    .num{
+      width:34px;height:34px;border-radius:12px;
+      display:grid;place-items:center;
+      font-weight:700;
+      color:#08120f;
+      background:linear-gradient(135deg, var(--accent), #b8ffe8);
+      box-shadow:0 8px 18px rgba(116,240,194,.22);
+      flex-shrink:0;
+    }
+
+    .services-layout{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:1rem;
+      margin-top:2rem;
+    }
+    .service-panel{
+      padding:1.35rem;
+      border-radius:22px;
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      position:relative;
+      overflow:hidden;
+    }
+    .service-panel::after{
+      content:"";
+      position:absolute;
+      right:-40px; top:-40px;
+      width:120px;height:120px;border-radius:50%;
+      background:radial-gradient(circle, rgba(116,240,194,.18), transparent 65%);
+      pointer-events:none;
+    }
+    .service-panel p{margin-top:.55rem}
+    .mini-points{
+      margin-top:1rem;
+      display:flex;
+      flex-wrap:wrap;
+      gap:.6rem;
+    }
+    .mini-points span{
+      padding:.55rem .8rem;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.1);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:.9rem;
+    }
+
+    .showcase{
+      display:grid;
+      grid-template-columns:repeat(12, 1fr);
+      gap:1rem;
+      margin-top:2rem;
+    }
+    .show{
+      padding:1.35rem;
+      border-radius:22px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      min-height:220px;
+      position:relative;
+      overflow:hidden;
+    }
+    .show::before{
+      content:"";
+      position:absolute;
+      inset:auto -20% -30% auto;
+      width:180px;height:180px;border-radius:50%;
+      background:radial-gradient(circle, rgba(122,168,255,.16), transparent 65%);
+    }
+    .show:nth-child(1){grid-column:span 7}
+    .show:nth-child(2){grid-column:span 5}
+    .show:nth-child(3){grid-column:span 4}
+    .show:nth-child(4){grid-column:span 8}
+    .tone-strip{
+      margin-top:1rem;
+      display:flex;flex-wrap:wrap;gap:.5rem;
+    }
+    .tone{
+      padding:.48rem .72rem;
+      border-radius:999px;
+      font-size:.86rem;
+      border:1px solid rgba(255,255,255,.1);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+    }
+
+    .cta-band{
+      padding:1.5rem;
+      border-radius:30px;
+      background:
+        linear-gradient(135deg, rgba(116,240,194,.14), rgba(122,168,255,.12)),
+        rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:var(--shadow);
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:1rem;
+      align-items:center;
+    }
+
+    .contact-wrap{
+      display:grid;
+      grid-template-columns:.95fr 1.05fr;
+      gap:1.2rem;
+      margin-top:2rem;
+    }
+    .contact-box{
+      padding:1.35rem;
+      border-radius:22px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+    }
+    .contact-list{
+      display:grid;gap:.9rem;margin-top:1rem;
+    }
+    .contact-line{
+      display:flex;align-items:center;justify-content:space-between;gap:1rem;
+      padding:.95rem 1rem;
+      border-radius:18px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      flex-wrap:wrap;
+    }
+    .contact-line strong{font-size:1rem}
+    .contact-line span{color:var(--muted)}
+    .contact-form{
+      display:grid;
+      gap:.85rem;
+    }
+    .field{display:grid;gap:.45rem}
+    label{font-size:.92rem;color:var(--muted)}
+    input, textarea, select{
+      width:100%;
+      border:1px solid rgba(255,255,255,.1);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      border-radius:16px;
+      padding:1rem 1rem;
+      font:inherit;
+      outline:none;
+    }
+    textarea{min-height:140px;resize:vertical}
+
+    footer{
+      padding:2.4rem 0 3rem;
+      color:var(--muted);
+    }
+    .footer-row{
+      display:flex;justify-content:space-between;gap:1rem;align-items:center;flex-wrap:wrap;
+      padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(24px);
+      transition:opacity .6s ease, transform .6s ease;
+    }
+    .reveal.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .stagger > *{
+      opacity:0;
+      transform:translateY(18px);
+      animation:rise .7s cubic-bezier(.22,.61,.36,1) forwards;
+    }
+    .stagger > *:nth-child(1){animation-delay:.05s}
+    .stagger > *:nth-child(2){animation-delay:.14s}
+    .stagger > *:nth-child(3){animation-delay:.23s}
+    .stagger > *:nth-child(4){animation-delay:.32s}
+    .stagger > *:nth-child(5){animation-delay:.41s}
+    .stagger > *:nth-child(6){animation-delay:.5s}
+
+    @keyframes rise{to{opacity:1;transform:translateY(0)}}
+    @keyframes floaty{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-8px)}
+    }
+    .tag-a,.tag-b,.tag-c,.device{animation:floaty 7s ease-in-out infinite}
+    .tag-b{animation-delay:.6s}
+    .tag-c{animation-delay:1.2s}
+    .device{animation-delay:.2s}
+
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      *, *::before, *::after{
+        animation:none !important;
+        transition:none !important;
+      }
+      .reveal{opacity:1;transform:none}
+    }
+
+    @media (max-width: 980px){
+      .hero-grid,
+      .content-grid,
+      .cta-band,
+      .contact-wrap{
+        grid-template-columns:1fr;
+      }
+      .services-layout{grid-template-columns:1fr}
+      .show:nth-child(n){grid-column:span 12}
+      .hero-visual{min-height:auto}
+      .tag-a,.tag-b,.tag-c{position:static;margin-top:.8rem}
+      .hero-visual{display:block}
+      .device{margin-inline:auto}
+    }
+
+    @media (max-width: 760px){
+      .nav-links,
+      .nav-cta .btn-secondary{
+        display:none;
+      }
+      .menu-btn{display:inline-flex}
+      .mobile-menu{
+        position:absolute;
+        top:calc(100% + .5rem);
+        left:1rem;right:1rem;
+        padding:1rem;
+        border-radius:22px;
+        border:1px solid var(--line);
+        background:rgba(16,19,28,.96);
+        backdrop-filter:blur(18px);
+        box-shadow:var(--shadow);
+        display:grid;
+        gap:.4rem;
+        opacity:0;
+        pointer-events:none;
+        transform:translateY(-10px);
+        transition:.22s ease;
+      }
+      .mobile-menu.open{
+        opacity:1;
+        pointer-events:auto;
+        transform:translateY(0);
+      }
+      .mobile-menu a, .mobile-menu .btn{width:100%}
+      .mobile-menu a{
+        padding:.9rem 1rem;
+        border-radius:14px;
+        color:var(--muted);
+      }
+      .hero-actions{flex-direction:column;align-items:stretch}
+      .btn{width:100%}
+      .hero{padding-top:2rem}
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="#top" class="brand" aria-label="WebDesignerPro home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>WebDesignerPro</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#about">About Us</a>
+        <a href="#services">Services</a>
+        <a href="#looks">Looks</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="nav-cta">
+        <a class="btn btn-secondary" href="#about">About Us</a>
+        <a class="btn btn-primary" href="sms:+13464485109?body=Hey!%20I%27m%20intrested%20in%20your%20sevices">Text Now</a>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span>
+        </button>
+      </div>
+
+      <div class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+        <a href="#about">About Us</a>
+        <a href="#services">Services</a>
+        <a href="#looks">Looks</a>
+        <a href="#contact">Contact</a>
+        <a class="btn btn-primary" href="sms:+13464485109?body=Hey!%20I%27m%20intrested%20in%20your%20sevices">Text Now</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero section">
+      <div class="container hero-grid">
+        <div class="hero-copy stagger">
+          <span class="eyebrow">Modern websites with custom style</span>
+          <h1>Websites that feel premium, look custom, and help businesses stand out online.</h1>
+          <p>
+            WebDesignerPro builds sleek, mobile-friendly websites for businesses that want more than a basic online page. From custom layout choices and contact-focused sections to smoother visuals and a stronger overall vibe, every website is designed to look modern and feel built with purpose.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="sms:+13464485109?body=Hey!%20I%27m%20intrested%20in%20your%20sevices">Text Now</a>
+            <a class="btn btn-secondary" href="#services">View Services</a>
+          </div>
+          <div class="hero-meta">
+            <span><strong>Custom:</strong> vibe, layout, CTA, branding</span>
+            <span><strong>Mobile-first:</strong> smooth on iPhone + Android</span>
+            <span><strong>Modern:</strong> clean visuals and light animation</span>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="float-tag tag-a">
+            Smooth mobile animation
+            <small>Lightweight and easy on regular phones</small>
+          </div>
+          <div class="float-tag tag-b">
+            Strong contact setup
+            <small>Text buttons, email, socials, and clear calls-to-action</small>
+          </div>
+          <div class="float-tag tag-c">
+            Built around your vibe
+            <small>Modern, luxury, bold, minimal, creative, and more</small>
+          </div>
+
+          <div class="device" aria-hidden="true">
+            <div class="device-notch"></div>
+            <div class="ui">
+              <div class="ui-bar">
+                <div class="ui-dot"></div>
+                <div class="ui-lines">
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+              <div class="ui-row">
+                <div class="ui-block">
+                  <div class="ui-lines">
+                    <span style="width:80%"></span>
+                    <span style="width:62%"></span>
+                    <span style="width:45%"></span>
+                  </div>
+                  <div class="ui-pill"></div>
+                </div>
+                <div class="ui-box"></div>
+              </div>
+              <div class="ui-block">
+                <div class="ui-grid">
+                  <div class="ui-box"></div>
+                  <div class="ui-box"></div>
+                  <div class="ui-box"></div>
+                  <div class="ui-box"></div>
+                </div>
+              </div>
+              <div class="ui-footer">Custom-built look</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container content-grid">
+        <div class="reveal">
+          <span class="eyebrow">About Us</span>
+          <h2>We build websites that match your business, your goals, and the impression you want to leave.</h2>
+          <p>
+            At WebDesignerPro, the focus is on creating websites that feel intentional, polished, and modern without being overcomplicated. Whether a business needs a full redesign or a fresh custom site, the goal is to improve the way it looks, the way it flows, and the way customers interact with it. That includes the overall vibe, the page structure, the contact information placement, the button strategy, the mobile experience, and everything in between.
+          </p>
+          <p style="margin-top:1rem;">
+            Every website can be shaped around a specific style and purpose. Some clients want something clean and professional. Others want something bold, high-end, minimal, or more creative. WebDesignerPro helps turn that vision into a site that feels more valuable, more current, and more aligned with the business behind it.
+          </p>
+        </div>
+
+        <div class="panel reveal">
+          <div class="about-list">
+            <div class="about-item">
+              <div class="num">1</div>
+              <div>
+                <h3>Custom vibe direction</h3>
+                <p>The website can be made to feel luxury, modern, bold, minimal, energetic, classy, dark, bright, or built around a totally custom style.</p>
+              </div>
+            </div>
+            <div class="about-item">
+              <div class="num">2</div>
+              <div>
+                <h3>Layout tailored to your business</h3>
+                <p>Sections are organized around what matters most, whether that is services, products, booking, location, hours, trust, or social media.</p>
+              </div>
+            </div>
+            <div class="about-item">
+              <div class="num">3</div>
+              <div>
+                <h3>Contact-focused structure</h3>
+                <p>Phone number, email, Instagram, and call-to-action buttons are placed where people can see them and actually use them.</p>
+              </div>
+            </div>
+            <div class="about-item">
+              <div class="num">4</div>
+              <div>
+                <h3>Modern visual upgrade</h3>
+                <p>Older or basic websites can be refreshed with cleaner typography, improved spacing, smoother sections, and a more premium feel.</p>
+              </div>
+            </div>
+            <div class="about-item">
+              <div class="num">5</div>
+              <div>
+                <h3>Phone-friendly animations</h3>
+                <p>Animations stay simple, polished, and lightweight so the site feels smooth on both iPhones and standard mobile devices.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="reveal">
+          <span class="eyebrow">Services</span>
+          <h2>What can be built into your website.</h2>
+          <p>
+            Based on what modern AI website builders like Hostinger can support, WebDesignerPro can create websites that include the key sections and features businesses actually need to look professional and get contacted faster.
+          </p>
+        </div>
+
+        <div class="services-layout">
+          <article class="service-panel reveal">
+            <h3>Custom homepage design</h3>
+            <p>A clean homepage built around your business with a strong headline, service overview, contact access, and a clear first impression.</p>
+            <div class="mini-points">
+              <span>Hero section</span>
+              <span>Custom wording</span>
+              <span>CTA buttons</span>
+              <span>Trust-focused layout</span>
+            </div>
+          </article>
+
+          <article class="service-panel reveal">
+            <h3>Business information sections</h3>
+            <p>Your website can display phone number, email, business hours, address, service area, and social media in an organized way.</p>
+            <div class="mini-points">
+              <span>Phone number</span>
+              <span>Email</span>
+              <span>Instagram</span>
+              <span>Hours & location</span>
+            </div>
+          </article>
+
+          <article class="service-panel reveal">
+            <h3>Service and product showcases</h3>
+            <p>Highlight your services or products with clean sections that explain what you offer and make the website easier to understand.</p>
+            <div class="mini-points">
+              <span>Services list</span>
+              <span>Product highlights</span>
+              <span>Pricing blocks</span>
+              <span>Feature sections</span>
+            </div>
+          </article>
+
+          <article class="service-panel reveal">
+            <h3>Lead-focused contact setup</h3>
+            <p>Make it easier for customers to text, call, message, or email you with stronger button placement and simple contact forms.</p>
+            <div class="mini-points">
+              <span>Text buttons</span>
+              <span>Call buttons</span>
+              <span>Contact forms</span>
+              <span>Quote requests</span>
+            </div>
+          </article>
+
+          <article class="service-panel reveal">
+            <h3>Modern responsive design</h3>
+            <p>Your website is designed to adjust across desktop and mobile screens so it stays clean and easy to use on phones.</p>
+            <div class="mini-points">
+              <span>Mobile-friendly</span>
+              <span>Tablet-ready</span>
+              <span>Responsive layout</span>
+              <span>Fast visual flow</span>
+            </div>
+          </article>
+
+          <article class="service-panel reveal">
+            <h3>Clean AI-assisted structure</h3>
+            <p>Layouts can be inspired by AI website builder speed while still being customized to feel more intentional and less generic.</p>
+            <div class="mini-points">
+              <span>Fast setup</span>
+              <span>Editable sections</span>
+              <span>Clean page flow</span>
+              <span>Custom finishing touches</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="looks">
+      <div class="container">
+        <div class="reveal">
+          <span class="eyebrow">Looks</span>
+          <h2>Different vibes your website can have.</h2>
+          <p>
+            Not every business should look the same. Here are a few different directions your website can take depending on the feeling you want it to give.
+          </p>
+        </div>
+
+        <div class="showcase">
+          <article class="show reveal">
+            <h3>Midnight luxury</h3>
+            <p>Dark, sleek, premium, and polished. Best for brands or businesses that want an expensive and refined online presence.</p>
+            <div class="tone-strip">
+              <span class="tone">Luxury</span>
+              <span class="tone">Dark elegance</span>
+              <span class="tone">Premium feel</span>
+            </div>
+          </article>
+
+          <article class="show reveal">
+            <h3>Clean urban modern</h3>
+            <p>Simple, sharp, and current. Great for local businesses that want to look updated, trustworthy, and smooth without overdoing it.</p>
+            <div class="tone-strip">
+              <span class="tone">Modern</span>
+              <span class="tone">Minimal</span>
+              <span class="tone">Professional</span>
+            </div>
+          </article>
+
+          <article class="show reveal">
+            <h3>Bold digital energy</h3>
+            <p>Bright accents, punchy sections, and more visual movement for businesses that want a stronger, more attention-grabbing style.</p>
+            <div class="tone-strip">
+              <span class="tone">Bold</span>
+              <span class="tone">Energetic</span>
+              <span class="tone">Creative</span>
+            </div>
+          </article>
+
+          <article class="show reveal">
+            <h3>Soft modern minimal</h3>
+            <p>A lighter, relaxed, and cleaner approach with balanced spacing and subtle visual effects for a calm but premium look.</p>
+            <div class="tone-strip">
+              <span class="tone">Soft</span>
+              <span class="tone">Minimal</span>
+              <span class="tone">Smooth</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cta-band reveal">
+          <div>
+            <span class="eyebrow">Need a better website?</span>
+            <h2>Get a website that looks more modern and feels built for your business.</h2>
+            <p>Whether you want a whole new look, stronger contact sections, better layout, or a different vibe, WebDesignerPro can help shape the site around what you want customers to see first.</p>
+          </div>
+          <div class="hero-actions" style="margin-top:0;">
+            <a class="btn btn-primary" href="sms:+13464485109?body=Hey!%20I%27m%20intrested%20in%20your%20sevices">Text Now</a>
+            <a class="btn btn-secondary" href="#contact">Contact Info</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="reveal">
+          <span class="eyebrow">Contact</span>
+          <h2>Let’s talk about your website.</h2>
+          <p>
+            Reach out if you want a new website, a redesign, a better layout, stronger call-to-action buttons, or a different look that fits your brand better.
+          </p>
+        </div>
+
+        <div class="contact-wrap">
+          <div class="contact-box reveal">
+            <h3>Contact info</h3>
+            <div class="contact-list">
+              <div class="contact-line">
+                <strong>Phone</strong>
+                <span>+1 (346) 448 5109</span>
+              </div>
+              <div class="contact-line">
+                <strong>Email</strong>
+                <span>webdesignpro70@gmail.com</span>
+              </div>
+              <div class="contact-line">
+                <strong>Instagram</strong>
+                <span>@webdesignpro70</span>
+              </div>
+            </div>
+
+            <div class="hero-actions" style="margin-top:1rem;">
+              <a class="btn btn-primary" href="sms:+13464485109?body=Hey!%20I%27m%20intrested%20in%20your%20sevices">Text Now</a>
+              <a class="btn btn-secondary" href="mailto:webdesignpro70@gmail.com">Email Me</a>
+            </div>
+          </div>
+
+          <div class="contact-box reveal">
+            <h3>Quick message</h3>
+            <form class="contact-form" id="projectForm">
+              <div class="field">
+                <label for="name">Your name</label>
+                <input id="name" name="name" type="text" placeholder="Your name" />
+              </div>
+              <div class="field">
+                <label for="business">Business type</label>
+                <input id="business" name="business" type="text" placeholder="Barber shop, clothing brand, auto shop..." />
+              </div>
+              <div class="field">
+                <label for="vibe">Website vibe</label>
+                <select id="vibe" name="vibe">
+                  <option value="">Choose a vibe</option>
+                  <option>Midnight luxury</option>
+                  <option>Clean urban modern</option>
+                  <option>Bold digital energy</option>
+                  <option>Soft modern minimal</option>
+                  <option>Custom vibe</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="details">What do you want on the website?</label>
+                <textarea id="details" name="details" placeholder="Services, products, hours, contact info, redesign notes, social links..."></textarea>
+              </div>
+              <button class="btn btn-primary" type="submit">Text Now</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <div>© 2026 WebDesignerPro. Modern websites with custom vibe, layout, and contact-focused design.</div>
+      <div><a href="#top">Back to top</a></div>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener('click', () => {
+        const open = mobileMenu.classList.toggle('open');
+        menuBtn.classList.toggle('active', open);
+        menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('open');
+          menuBtn.classList.remove('active');
+          menuBtn.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    const form = document.getElementById('projectForm');
+    if (form) {
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const defaultMessage = "Hey! I'm intrested in your sevices";
+        window.location.href = `sms:+13464485109?body=${encodeURIComponent(defaultMessage)}`;
+      });
+    }
+  </script>
+</body>
+</html>
